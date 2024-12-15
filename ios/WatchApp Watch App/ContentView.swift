@@ -11,6 +11,7 @@ struct ContentView: View {
     var body: some View {
         TabView {
             RecordingView()
+            FeedbackView()
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         .background(AppColors.darkBlue.ignoresSafeArea())
