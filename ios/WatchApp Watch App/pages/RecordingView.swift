@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RecordingView: View {
+    @ObservedObject var timerManager: TimerManager
+
     var body: some View {
         VStack(spacing: 20) {
             HStack(spacing: 20) {
@@ -41,19 +43,8 @@ struct RecordingView: View {
                 }
             }
             // timer
-            Text("08")
-                .font(.system(size: 30))
+            Text(timerManager.timeString())
                 .foregroundColor(AppColors.lightBlue)
-            + Text(" min ")
-                .font(.system(size: 20))
-                .foregroundColor(AppColors.lightBlue)
-            + Text("22")
-                .font(.system(size: 30))
-                .foregroundColor(AppColors.lightBlue)
-            + Text(" sec")
-                .font(.system(size: 20))
-                .foregroundColor(AppColors.lightBlue)
-
         }
     }
 }

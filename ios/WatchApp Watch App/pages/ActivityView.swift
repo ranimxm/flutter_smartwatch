@@ -8,22 +8,39 @@
 import SwiftUI
 
 struct ActivityView: View {
+    @ObservedObject var timerManager: TimerManager
+
     var body: some View {
         VStack(spacing: 20) {
             HStack(spacing: 30) {
-                Image(systemName: "xmark.circle.fill")
-                    .resizable()
-                    .frame(width: 60, height: 60)
-                    .foregroundColor(AppColors.red)
-                Image(systemName: "play.circle.fill")
-                    .resizable()
-                    .frame(width: 60, height: 60)
-                    .foregroundColor(AppColors.green)
+                Button(action: {
+                    timerManager.stop()
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .foregroundColor(AppColors.red)
+                }
+                .buttonStyle(PlainButtonStyle())
+                Button(action: {
+                    timerManager.start()
+                }) {
+                    Image(systemName: "play.circle.fill")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .foregroundColor(AppColors.green)
+                }
+                .buttonStyle(PlainButtonStyle())
             }
-            Image(systemName: "pause.circle.fill")
-                .resizable()
-                .frame(width: 60, height: 60)
-                .foregroundColor(AppColors.yellow)
+            Button(action: {
+                timerManager.pause()
+            }) {
+                Image(systemName: "pause.circle.fill")
+                    .resizable()
+                    .frame(width: 60, height: 60)
+                    .foregroundColor(AppColors.yellow)
+            }
+            .buttonStyle(PlainButtonStyle())
         }
     }
 }

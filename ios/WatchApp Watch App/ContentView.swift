@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var timerManager = TimerManager()
+
     var body: some View {
         TabView {
-            RecordingView()
+            RecordingView(timerManager: timerManager)
+            ActivityView(timerManager: timerManager)
             FeedbackView()
-            ActivityView()
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         .background(AppColors.darkBlue.ignoresSafeArea())
