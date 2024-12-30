@@ -11,40 +11,47 @@ struct RecordingView: View {
     @ObservedObject var timerManager: TimerManager
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 10) {
             HStack(spacing: 20) {
                 // snelheid
-                VStack(spacing: 5) {
+                VStack() {
                     Image(systemName: "speedometer")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 50, height: 50)
+                        .frame(width: 45, height: 45)
                         .foregroundColor(AppColors.yellow)
                     Text("20")
-                        .font(.system(size: 50))
+                        .font(.system(size: 45))
                         .foregroundColor(AppColors.yellow)
-                    Text("km/h")
+                    Text("mph")
                         .font(.system(size: 20))
                         .foregroundColor(AppColors.yellow80)
                 }
                 // hartslag
-                VStack(spacing: 5) {
+                VStack() {
                     Image(systemName: "heart.fill")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 50, height: 50)
+                        .frame(width: 45, height: 45)
                         .foregroundColor(AppColors.red)
                     Text("80")
-                        .font(.system(size: 50))
+                        .font(.system(size: 45))
                         .foregroundColor(AppColors.red)
                     Text("bpm")
                         .font(.system(size: 20))
                         .foregroundColor(AppColors.red80)
                 }
             }
-            // timer
-            Text(timerManager.timeString())
-                .foregroundColor(AppColors.lightBlue)
+            VStack(spacing: 1) {
+                // countdown
+                Text(timerManager.timeString())
+                    .foregroundColor(AppColors.lightBlue)
+                // klok
+                Text(timerManager.currentTime)
+                    .font(.system(size: 21))
+                    .foregroundColor(AppColors.lightBlue)
+            }
+
         }
     }
 }

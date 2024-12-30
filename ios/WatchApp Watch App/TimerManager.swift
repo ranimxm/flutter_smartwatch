@@ -11,7 +11,14 @@ import SwiftUI
 class TimerManager: ObservableObject {
     @Published var elapsedTime: TimeInterval = 0
     @Published var isRunning = false
+    @Published var currentTime: String = ""
     var timer: Timer?
+    var clockTimer: Timer?
+
+    init() {
+        updateCurrentTime()
+        startClock()
+    }
 
     func start() {
         if !isRunning {
@@ -31,6 +38,22 @@ class TimerManager: ObservableObject {
         isRunning = false
         timer?.invalidate()
         elapsedTime = 0
+    }
+
+    func startClock() {
+        clockTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            self.updateCurrentTime()
+        }
+    }
+
+    func stopClock() {
+        clockTimer?.invalidate()
+    }
+
+    func updateCurrentTime() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        currentTime = dateFormatter.string(from: Date())
     }
 
     func timeString() -> AttributedString {
